@@ -38,7 +38,7 @@ class Program
             
             Console.WriteLine($"You have tried {guessCount} times!");
 
-            Console.WriteLine($"Do you want to play again Yes/No:");
+            Console.Write($"Do you want to play again Yes/No: ");
             answer=Console.ReadLine();
             answer=answer.ToLower();
         }
