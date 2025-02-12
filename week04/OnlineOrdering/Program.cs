@@ -7,15 +7,26 @@ class Program
         Console.WriteLine("Hello World! This is the OnlineOrdering Project.");
 
         //order1
-        string custName="Alfredo Juanillo";
-        string custAddressStreet="Av Deporte";
-        string custAddressCity="Tacna";
-        string custAddressState="Tacna";
+        string custName="Alonso G Salazar";
+        string custAddressStreet="Saint Av";
+        string custAddressCity="Seattle";
+        string custAddressState="Washington";
         string custAddressCountry="USA";
 
         Address address1=new Address(custAddressStreet, custAddressCity, custAddressState, custAddressCountry);
         Customer customer1=new Customer(custName,address1);
 
+        string custName1="Alfredo Juanillo";
+        string custAddressStreet1="Av Deporte";
+        string custAddressCity1="Tacna";
+        string custAddressState1="Tacna";
+        string custAddressCountry1="Peru";
+
+        Address address2=new Address(custAddressStreet1, custAddressCity1, custAddressState1, custAddressCountry1);
+        Customer customer2=new Customer(custName1,address2);
+
+
+        //Order 01
         string productName1="Coca Cola";
         int productId1=1001;
         int productPrice1=5;
@@ -51,7 +62,7 @@ class Program
         Product product3=new Product(productName1, productId1, productPrice1, quantity1);
         Product product4=new Product(productName2, productId2, productPrice2, quantity2);
         Product product5=new Product(productName3, productId3, productPrice3, quantity3);
-        Order order2=new Order(customer1);
+        Order order2=new Order(customer2);
         order2.AddProduct(product3);
         order2.AddProduct(product4);
         order2.AddProduct(product5);
