@@ -20,9 +20,6 @@ class BreathingActivity : Activity
             Console.Write("Breathe out... ");
             ShowCountDown(6);
         }
-
-        Console.WriteLine("Well done!!");
-        ShowSpinner(3);
         
         DisplayEndingMessage();     // Base Class "Activity"
     }

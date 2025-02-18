@@ -23,12 +23,12 @@ class Program
                 breathingActivity.Run();
                 break;
             case 2:
-            //     ReflectionActivity reflectionActivity = new ReflectionActivity();
-            //     reflectionActivity.Run();
+                ReflectionActivity reflectionActivity = new ReflectionActivity("Reflection Activity","This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
+                reflectionActivity.Run();
                 break;
             case 3:
-            //     ListingActivity listingActivity = new ListingActivity();
-            //     listingActivity.Run();
+                ListingActivity listingActivity = new ListingActivity("Listing Activity","This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
+                listingActivity.Run();
                  break;
             case 4:
                 Console.WriteLine("Goodbye!");
