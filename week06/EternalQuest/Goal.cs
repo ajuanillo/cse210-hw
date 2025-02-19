@@ -17,7 +17,7 @@
 
     public virtual string GetDetailsString()
     {
-        return "";
+        return $"{this.GetType()}: {_name},{_description}, {_points}";
     }
 
     public abstract string GetStringRepresentation();

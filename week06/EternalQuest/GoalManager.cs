@@ -141,7 +141,7 @@ class GoalManager
             outputFile.WriteLine(_score);
             foreach (Goal goal in _goals)
             {
-                outputFile.WriteLine(goal.GetStringRepresentation());
+                outputFile.WriteLine(goal.GetDetailsString());
             }
         }
     }

@@ -18,7 +18,7 @@ public class SimpleGoal : Goal
     public override string GetStringRepresentation()
     {
         string status = IsComplete() ? "[X]" : "[ ]";
-        return $"{status} {_name} ({_description})";
+        return $"{status} {_name} - {_description}.";
     }
 }
 
