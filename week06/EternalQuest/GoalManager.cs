@@ -94,6 +94,32 @@ class GoalManager
             SimpleGoal simpleGoal = new SimpleGoal(name, description, points);
             _goals.Add(simpleGoal);
         }
+        else if(goalChoice == 2)
+        {
+            Console.Write("What is the name of your goal? ");
+            string name = Console.ReadLine();
+            Console.Write("What is a short description of it? ");
+            string description = Console.ReadLine();
+            Console.Write("What is the amount of points associated with this goal? ");
+            int points = Convert.ToInt32(Console.ReadLine());
+            EternalGoal eternalGoal = new EternalGoal(name, description, points);
+            _goals.Add(eternalGoal);
+        }
+        else if(goalChoice == 3)
+        {
+            Console.Write("What is the name of your goal? ");
+            string name = Console.ReadLine();
+            Console.Write("What is a short description of it? ");
+            string description = Console.ReadLine();
+            Console.Write("What is the amount of points associated with this goal? ");
+            int points = Convert.ToInt32(Console.ReadLine());
+            Console.Write("How many times does this goal need to be accomplished for a bonus? ");
+            int target = Convert.ToInt32(Console.ReadLine());
+            Console.Write("What is the bonus for accomplishing it that many times? ");
+            int bonus = Convert.ToInt32(Console.ReadLine());
+            ChecklistGoal checklistGoal = new ChecklistGoal(name, description, points, target, bonus);
+            _goals.Add(checklistGoal);
+        }
                 
     }
 
@@ -109,11 +135,57 @@ class GoalManager
 
     public void SaveGoals()
     {
-        // Implementation for saving goals
+        //Save the information.
+        using (StreamWriter outputFile = new StreamWriter("goals.txt"))
+        {
+            outputFile.WriteLine(_score);
+            foreach (Goal goal in _goals)
+            {
+                outputFile.WriteLine(goal.GetStringRepresentation());
+            }
+        }
     }
 
     public void LoadGoals()
     {
-        // Implementation for loading goals
+        // Load from goals.tx
+        string[] lines = System.IO.File.ReadAllLines("goals.txt");
+        _score = Convert.ToInt32(lines[0]);
+        foreach (string line in lines.Skip(1))
+        {
+            string[] parts = line.Split(":");
+            string goalType = parts[0];
+            string[] goalParts = parts[1].Split(",");
+            string name = goalParts[0];
+            string description = goalParts[1];
+            int points = Convert.ToInt32(goalParts[2]);
+            if(goalType == "SimpleGoal")
+            {
+                bool isComplete = Convert.ToBoolean(goalParts[3]);
+                SimpleGoal simpleGoal = new SimpleGoal(name, description, points);
+                if(isComplete)
+                {
+                    simpleGoal.RecordEvent();
+                }
+                _goals.Add(simpleGoal);
+            }
+            else if(goalType == "EternalGoal")
+            {
+                EternalGoal eternalGoal = new EternalGoal(name, description, points);
+                _goals.Add(eternalGoal);
+            }
+            else if(goalType == "ChecklistGoal")
+            {
+                int amountCompleted = Convert.ToInt32(goalParts[3]);
+                int target = Convert.ToInt32(goalParts[4]);
+                int bonus = Convert.ToInt32(goalParts[5]);
+                ChecklistGoal checklistGoal = new ChecklistGoal(name, description, points, target, bonus);
+                for(int i = 0; i < amountCompleted; i++)
+                {
+                    checklistGoal.RecordEvent();
+                }
+                _goals.Add(checklistGoal);
+            }
+        }
     }
 }
