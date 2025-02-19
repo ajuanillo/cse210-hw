@@ -27,12 +27,16 @@ public class ChecklistGoal : Goal
 
     public override string GetDetailsString()
     {
-        return $"{this.GetType()}: {_name},{_description}, {_points},{_bonus},{_amountCompleted},{_target}";
+        return $"{this.GetType()}: {_name},{_description}, {_points},{_bonus},{_target},{_amountCompleted}";
     }
 
     public override string GetStringRepresentation()
     {
          string status = IsComplete() ? "[X]" : "[ ]";
-        return $"{status} {_name} - ({_description} -- Completed {_amountCompleted}/{_target} times)";
+        return $"{status} {_name} - {_description} -- Completed {_amountCompleted}/{_target} times";
+    }
+    public void SetAmountCompleted(int amount)
+    {
+        _amountCompleted = amount;
     }
 }

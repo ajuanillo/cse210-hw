@@ -150,23 +150,20 @@ class GoalManager
     {
         // Load from goals.tx
         string[] lines = System.IO.File.ReadAllLines("goals.txt");
-        _score = Convert.ToInt32(lines[0]);
-        foreach (string line in lines.Skip(1))
+        _score += Convert.ToInt32(lines[0]);
+        for(int i = 1; i < lines.Length; i++)
         {
-            string[] parts = line.Split(":");
-            string goalType = parts[0];
-            string[] goalParts = parts[1].Split(",");
-            string name = goalParts[0];
-            string description = goalParts[1];
-            int points = Convert.ToInt32(goalParts[2]);
+            string[] partType = lines[i].Split(":");
+            string goalType = partType[0];
+            string[] parts = partType[1].Split(",");
+            string name = parts[0];
+            string description = parts[1];
+            int points = Convert.ToInt32(parts[2]);
             if(goalType == "SimpleGoal")
             {
-                bool isComplete = Convert.ToBoolean(goalParts[3]);
+                
                 SimpleGoal simpleGoal = new SimpleGoal(name, description, points);
-                if(isComplete)
-                {
-                    simpleGoal.RecordEvent();
-                }
+                
                 _goals.Add(simpleGoal);
             }
             else if(goalType == "EternalGoal")
@@ -176,16 +173,14 @@ class GoalManager
             }
             else if(goalType == "ChecklistGoal")
             {
-                int amountCompleted = Convert.ToInt32(goalParts[3]);
-                int target = Convert.ToInt32(goalParts[4]);
-                int bonus = Convert.ToInt32(goalParts[5]);
+                int bonus = Convert.ToInt32(parts[3]);
+                int target = Convert.ToInt32(parts[4]);
+                int amountCompleted = Convert.ToInt32(parts[5]);
                 ChecklistGoal checklistGoal = new ChecklistGoal(name, description, points, target, bonus);
-                for(int i = 0; i < amountCompleted; i++)
-                {
-                    checklistGoal.RecordEvent();
-                }
+                checklistGoal.SetAmountCompleted(amountCompleted);
                 _goals.Add(checklistGoal);
             }
         }
+        
     }
 }

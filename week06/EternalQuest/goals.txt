@@ -1,0 +1,5 @@
+109
+ChecklistGoal:  Read a new book,Reading, 77,60,2,2
+SimpleGoal:  Complete my project and other projects,Projects, 26
+ChecklistGoal:  Review documentations,Reading, 33,50,2,2
+SimpleGoal:  Complete my project,Homework, 15
