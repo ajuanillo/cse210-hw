@@ -12,5 +12,8 @@ public abstract class Activity
     public abstract double GetDistance();
     public abstract double GetSpeed();
     public abstract double GetPace();
-    public abstract string GetSummary();
+    public virtual string GetSummary()
+    {
+        return "";
+    }
 }
